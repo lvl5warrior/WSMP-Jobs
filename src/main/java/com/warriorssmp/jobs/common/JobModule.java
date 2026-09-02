@@ -1,5 +1,6 @@
 package com.warriorssmp.jobs.common;
 
+import com.warriorssmp.jobs.WSMPJobsPlugin;
 import org.bukkit.Server;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
