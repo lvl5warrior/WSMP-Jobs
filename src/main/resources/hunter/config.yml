@@ -1,0 +1,306 @@
+# WSMP-Hunter configuration
+# Points are an in-plugin currency earned from tasks and Legendary Requests —
+# NOT real money, NOT shared with any other plugin.
+# Every number in this file is a placeholder ratio; rebalance to taste.
+#
+# MOB TIER PLACEMENT: the design doc lists several mobs across multiple tiers
+# (e.g. Witch, Ravager, Shulker appear at more than one tier as a "tougher"
+# version). Vanilla mobs don't actually scale in difficulty by world day the
+# way that implies, and each mob can only belong to one tier here (the same
+# architecture constraint as every other WSMP skill plugin). Warden/Wither/
+# Ender Dragon are kept exclusively at Tier 7 as the doc's explicit "boss
+# task" trio; every other mob is assigned to roughly the tier band it fits
+# best. One real gap this created: once duplicates are removed, the doc's own
+# Tier 6 list is empty (every mob in it is a repeat from Tier 4/5, and "Raid"/
+# "Bastion Encounter"/"End City Encounter" aren't real EntityType values, so
+# they can't be tracked via EntityDeathEvent at all). Elder Guardian and
+# Shulker were moved down from the doc's Tier 5 to fill Tier 6 instead, since
+# both are already the toughest non-boss mobs the doc lists and both require
+# real exploration (ocean monument / End city) to even find — a reasonable
+# fit for "Elite" that doesn't require inventing new content.
+#
+# ANTI-CHEESE: kills only count toward a task if your held weapon and worn
+# chestplate meet that tier's minimum material rank (see EquipmentConditions
+# in code) — Tier 3+ requires Stone/Leather, Tier 4+ Iron, Tier 5+ Diamond,
+# Tier 6-7 Netherite. This is what stops AFK/undergeared farming.
+#
+# HOMES SYSTEM DROPPED: the doc's 3-home system (with per-home unlock costs
+# and cooldowns) was simplified to just "Teleport to Combat Master" — matching
+# the same simplification already made across Mining/Woodcutting/Farming/
+# Fishing/Cooking, for consistency across the whole plugin set.
+
+settings:
+  skip-cost: 25.0
+  task-block-cost: 100.0
+  master-teleport-cost: 1500.0
+  master-teleport-cooldown-minutes: 30
+  guide-book-cooldown-hours: 24
+  npc-shop-radius: 5.0
+
+tiers:
+  1:
+    name: "Tier 1"
+    display: "&aTier 1"
+    difficulty: "Very Easy"
+    min-level: 1
+    base-coins: 10
+    premium: false
+    resources:
+      CHICKEN: {type: HUNTING, level: 1, min-amount: 15, max-amount: 30}
+      COW: {type: HUNTING, level: 1, min-amount: 15, max-amount: 30}
+      PIG: {type: HUNTING, level: 1, min-amount: 15, max-amount: 30}
+      SHEEP: {type: HUNTING, level: 1, min-amount: 15, max-amount: 30}
+      RABBIT: {type: HUNTING, level: 1, min-amount: 15, max-amount: 30}
+      SILVERFISH: {type: HUNTING, level: 3, min-amount: 10, max-amount: 20}
+  2:
+    name: "Tier 2"
+    display: "&aTier 2"
+    difficulty: "Easy"
+    min-level: 10
+    base-coins: 20
+    premium: false
+    resources:
+      ZOMBIE: {type: HUNTING, level: 10, min-amount: 20, max-amount: 40}
+      SPIDER: {type: HUNTING, level: 10, min-amount: 20, max-amount: 40}
+      HUSK: {type: HUNTING, level: 12, min-amount: 15, max-amount: 30}
+      DROWNED: {type: HUNTING, level: 15, min-amount: 15, max-amount: 30}
+      SKELETON: {type: HUNTING, level: 15, min-amount: 15, max-amount: 30}
+      WOLF: {type: HUNTING, level: 10, min-amount: 10, max-amount: 20}
+  3:
+    name: "Tier 3"
+    display: "&eTier 3"
+    difficulty: "Moderate"
+    min-level: 25
+    base-coins: 40
+    premium: true
+    resources:
+      CREEPER: {type: HUNTING, level: 25, min-amount: 12, max-amount: 25}
+      STRAY: {type: HUNTING, level: 27, min-amount: 10, max-amount: 20}
+      WITCH: {type: HUNTING, level: 30, min-amount: 6, max-amount: 12}
+      PILLAGER: {type: HUNTING, level: 28, min-amount: 10, max-amount: 20}
+      ZOMBIFIED_PIGLIN: {type: HUNTING, level: 25, min-amount: 10, max-amount: 20}
+      ENDERMAN: {type: HUNTING, level: 35, min-amount: 8, max-amount: 15}
+  4:
+    name: "Tier 4"
+    display: "&6Tier 4"
+    difficulty: "Hard"
+    min-level: 40
+    base-coins: 70
+    premium: true
+    resources:
+      VINDICATOR: {type: HUNTING, level: 40, min-amount: 6, max-amount: 12}
+      GUARDIAN: {type: HUNTING, level: 45, min-amount: 8, max-amount: 15}
+      BLAZE: {type: HUNTING, level: 40, min-amount: 8, max-amount: 15}
+      GHAST: {type: HUNTING, level: 40, min-amount: 5, max-amount: 10}
+      HOGLIN: {type: HUNTING, level: 40, min-amount: 10, max-amount: 20}
+      MAGMA_CUBE: {type: HUNTING, level: 42, min-amount: 15, max-amount: 30}
+  5:
+    name: "Tier 5"
+    display: "&cTier 5"
+    difficulty: "Very Hard"
+    min-level: 55
+    base-coins: 120
+    premium: true
+    resources:
+      EVOKER: {type: HUNTING, level: 55, min-amount: 4, max-amount: 8}
+      RAVAGER: {type: HUNTING, level: 55, min-amount: 3, max-amount: 6}
+      PIGLIN_BRUTE: {type: HUNTING, level: 55, min-amount: 5, max-amount: 10}
+      WITHER_SKELETON: {type: HUNTING, level: 55, min-amount: 6, max-amount: 12}
+  6:
+    name: "Tier 6"
+    display: "&5Tier 6"
+    difficulty: "Elite"
+    min-level: 70
+    base-coins: 200
+    premium: true
+    resources:
+      ELDER_GUARDIAN: {type: HUNTING, level: 70, min-amount: 1, max-amount: 3}
+      SHULKER: {type: HUNTING, level: 72, min-amount: 3, max-amount: 6}
+  7:
+    name: "Tier 7"
+    display: "&6&lTier 7"
+    difficulty: "Boss"
+    min-level: 85
+    base-coins: 150
+    premium: true
+    resources:
+      WARDEN: {type: HUNTING, level: 85, min-amount: 1, max-amount: 3}
+      WITHER: {type: HUNTING, level: 90, min-amount: 1, max-amount: 5}
+      ENDER_DRAGON: {type: HUNTING, level: 99, min-amount: 1, max-amount: 1}
+
+lucky-strike:
+  1: 0.01
+  2: 0.02
+  3: 0.03
+  4: 0.04
+  5: 0.05
+  6: 0.06
+  7: 0.08
+
+# One Legendary Request on top of Tier 7's normal boss pool — a big bulk
+# Wither Skeleton haul, matching every other WSMP skill plugin's Tier 7
+# capstone pattern (a bigger, rarer undertaking beyond the normal tasks).
+legendary-requests:
+  the_purge:
+    display: "&b👑 The Purge"
+    material: WITHER_SKELETON
+    min-amount: 20
+    max-amount: 40
+    yield: 600
+    cooldown-hours: 12
+
+streak-bonus:
+  5: 0.25
+  10: 0.50
+  25: 0.75
+  50: 1.25
+  100: 1.75
+
+shop:
+  task_skip:
+    display: "&fTask Skip"
+    material: ARROW
+    cost: 25
+    limit: -1
+    premium: false
+    description: "Skip your current task"
+  strength_potion:
+    display: "&fStrength Potion"
+    material: POTION
+    cost: 5
+    limit: -1
+    premium: false
+    description: "Strength potion"
+  speed_potion:
+    display: "&fSpeed Potion"
+    material: POTION
+    cost: 5
+    limit: -1
+    premium: false
+    description: "Speed potion"
+  fire_resistance_potion:
+    display: "&fFire Resistance Potion"
+    material: POTION
+    cost: 10
+    limit: -1
+    premium: false
+    description: "Fire Resistance potion"
+  night_vision_potion:
+    display: "&fNight Vision Potion"
+    material: POTION
+    cost: 10
+    limit: -1
+    premium: false
+    description: "Night Vision potion"
+  strength_ii_potion:
+    display: "&fStrength II Potion"
+    material: POTION
+    cost: 10
+    limit: -1
+    premium: false
+    description: "Strength II potion"
+  regeneration_potion:
+    display: "&fRegeneration Potion"
+    material: POTION
+    cost: 5
+    limit: -1
+    premium: false
+    description: "Regeneration potion"
+  protection_iv_book:
+    display: "&fProtection IV Book"
+    material: ENCHANTED_BOOK
+    cost: 25
+    limit: -1
+    premium: false
+    description: "Protection IV enchanted book"
+  sharpness_v_book:
+    display: "&fSharpness V Book"
+    material: ENCHANTED_BOOK
+    cost: 30
+    limit: -1
+    premium: false
+    description: "Sharpness V enchanted book"
+  power_v_book:
+    display: "&fPower V Book"
+    material: ENCHANTED_BOOK
+    cost: 35
+    limit: -1
+    premium: false
+    description: "Power V enchanted book"
+  efficiency_v_book:
+    display: "&fEfficiency V Book"
+    material: ENCHANTED_BOOK
+    cost: 75
+    limit: -1
+    premium: false
+    description: "Efficiency V enchanted book"
+  unbreaking_iii_book:
+    display: "&fUnbreaking III Book"
+    material: ENCHANTED_BOOK
+    cost: 75
+    limit: -1
+    premium: false
+    description: "Unbreaking III enchanted book"
+  feather_falling_iv_book:
+    display: "&fFeather Falling IV Book"
+    material: ENCHANTED_BOOK
+    cost: 75
+    limit: -1
+    premium: false
+    description: "Feather Falling IV enchanted book"
+  fortune_iii_book:
+    display: "&fFortune III Book"
+    material: ENCHANTED_BOOK
+    cost: 75
+    limit: -1
+    premium: false
+    description: "Fortune III enchanted book"
+  looting_iii_book:
+    display: "&fLooting III Book"
+    material: ENCHANTED_BOOK
+    cost: 100
+    limit: -1
+    premium: false
+    description: "Looting III enchanted book"
+  mending_book:
+    display: "&fMending Book"
+    material: ENCHANTED_BOOK
+    cost: 250
+    limit: -1
+    premium: false
+    description: "Mending enchanted book"
+  xp_boost:
+    display: "&bXP Boost"
+    material: EXPERIENCE_BOTTLE
+    cost: 500
+    limit: -1
+    premium: true
+    description: "+10% Hunter XP for 1 hour"
+  point_boost:
+    display: "&bPoint Boost"
+    material: EMERALD
+    cost: 750
+    limit: -1
+    premium: true
+    description: "+10% Hunter Points for 1 hour"
+  better_tasks:
+    display: "&6Better Tasks"
+    material: NETHER_STAR
+    cost: 1000
+    limit: -1
+    premium: true
+    description: "+5% chance of a higher-tier task"
+  master_teleport:
+    display: "&dTeleport to Combat Master"
+    material: ENDER_PEARL
+    cost: 1500
+    limit: 1
+    premium: true
+    description: "Unlock Combat Master teleport"
+  end_game_reward:
+    display: "&6&l???"
+    material: NETHER_STAR
+    cost: 5000
+    limit: -1
+    premium: true
+    description: "End-game reward"

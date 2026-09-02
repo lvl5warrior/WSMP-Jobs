@@ -1,0 +1,206 @@
+name: WSMP-Jobs
+version: '1.0.0'
+main: com.warriorssmp.jobs.WSMPJobsPlugin
+api-version: '1.21'
+author: WarriorsSMP
+softdepend: [Vault, PlaceholderAPI]
+
+commands:
+  # ============================================================ MINING
+  minemenu:
+    description: Open the Mining menu
+    aliases: [mining]
+  minetask:
+    description: View your active Mining task
+  mineleaderboards:
+    description: View the Mining leaderboard
+    aliases: [mineleaderboard]
+  minebuffs:
+    description: View your active Mining buffs
+  mineshop:
+    description: Open the Mining shop
+  mineshopadmin:
+    description: Admin editor for the Mining shop
+    permission: mining.admin
+  minemenuadmin:
+    description: Admin view of the Mining menu / player data
+    permission: mining.admin
+  mineeditor:
+    description: Admin editor for Mining tasks and tiers
+    permission: mining.admin
+  minemaster:
+    description: Spawn or manage the Master Miner NPC
+    permission: mining.admin
+
+  # ============================================================ WOODCUTTING
+  woodmenu:
+    description: Open the Woodcutting menu
+    aliases: [woodcutting]
+  woodtask:
+    description: View your active Woodcutting task
+  woodleaderboards:
+    description: View the Woodcutting leaderboard
+    aliases: [woodleaderboard]
+  woodbuffs:
+    description: View your active Woodcutting buffs
+  woodshop:
+    description: Open the Woodcutting shop
+  woodshopadmin:
+    description: Admin editor for the Woodcutting shop
+    permission: woodcutting.admin
+  woodmenuadmin:
+    description: Admin view of the Woodcutting menu / player data
+    permission: woodcutting.admin
+  woodeditor:
+    description: Admin editor for Woodcutting tasks and tiers
+    permission: woodcutting.admin
+  woodmaster:
+    description: Spawn or manage the Master Woodcutter NPC
+    permission: woodcutting.admin
+
+  # ============================================================ FARMING
+  farmmenu:
+    description: Open the Farming menu
+    aliases: [farming]
+  farmtask:
+    description: View your active Farming task
+  farmleaderboards:
+    description: View the Farming leaderboard
+    aliases: [farmleaderboard]
+  farmbuffs:
+    description: View your active Farming buffs
+  farmshop:
+    description: Open the Farming shop
+  farmshopadmin:
+    description: Admin editor for the Farming shop
+    permission: farming.admin
+  farmmenuadmin:
+    description: Admin view of the Farming menu / player data
+    permission: farming.admin
+  farmeditor:
+    description: Admin editor for Farming tasks and tiers
+    permission: farming.admin
+  farmmaster:
+    description: Spawn or manage the Master Farmer NPC
+    permission: farming.admin
+
+  # ============================================================ FISHING
+  fishmenu:
+    description: Open the Fishing menu
+    aliases: [fishing]
+  fishtask:
+    description: View your active Fishing task
+  fishleaderboards:
+    description: View the Fishing leaderboard
+    aliases: [fishleaderboard]
+  fishbuffs:
+    description: View your active Fishing buffs
+  fishshop:
+    description: Open the Fishing shop (must be near the Angler)
+  fishshopadmin:
+    description: Admin editor for the Fishing shop
+    permission: fishing.admin
+  fishmenuadmin:
+    description: Admin view of the Fishing menu / player data
+    permission: fishing.admin
+  fisheditor:
+    description: Admin editor for Fishing tasks and tiers
+    permission: fishing.admin
+  fishmaster:
+    description: Spawn or manage the Angler NPC
+    permission: fishing.admin
+
+  # ============================================================ COOKING
+  cookmenu:
+    description: Open the Cooking menu
+    aliases: [cooking]
+  cooktask:
+    description: View your active Cooking contract
+  cookleaderboards:
+    description: View the Cooking leaderboard
+    aliases: [cookleaderboard]
+  cookbuffs:
+    description: View your active Cooking buffs
+  cookshop:
+    description: Open the Cooking shop (must be near the Chef)
+  cookshopadmin:
+    description: Admin editor for the Cooking shop
+    permission: cooking.admin
+  cookmenuadmin:
+    description: Admin view of the Cooking menu / player data
+    permission: cooking.admin
+  cookeditor:
+    description: Admin editor for Cooking tasks and tiers
+    permission: cooking.admin
+  cookmaster:
+    description: Spawn or manage the Chef NPC
+    permission: cooking.admin
+
+  # ============================================================ HUNTER
+  huntermenu:
+    description: Open the Hunter menu
+    aliases: [hunter]
+  huntertask:
+    description: View your active Hunter task
+  hunterleaderboards:
+    description: View the Hunter leaderboard
+    aliases: [hunterleaderboard]
+  hunterbuffs:
+    description: View your active Hunter buffs
+  huntershop:
+    description: Open the Hunter shop (must be near the Combat Master)
+  huntershopadmin:
+    description: Admin editor for the Hunter shop
+    permission: hunter.admin
+  huntermenuadmin:
+    description: Admin view of the Hunter menu / player data
+    permission: hunter.admin
+  huntereditor:
+    description: Admin editor for Hunter tasks and tiers
+    permission: hunter.admin
+  huntermaster:
+    description: Spawn or manage the Combat Master NPC
+    permission: hunter.admin
+
+  # ============================================================ JOBBAR
+  jobs:
+    description: Open a menu showing all your WSMP job levels
+    aliases: [myjobs, joblevels, jobbar]
+
+permissions:
+  mining.admin:
+    description: Access to Mining admin commands
+    default: op
+  premiummining:
+    description: Access to Tier 3-7 Mining content
+    default: false
+  woodcutting.admin:
+    description: Access to Woodcutting admin commands
+    default: op
+  premiumwoodcutting:
+    description: Access to Tier 3-7 Woodcutting content
+    default: false
+  farming.admin:
+    description: Access to Farming admin commands
+    default: op
+  premiumfarming:
+    description: Access to Tier 3-7 Farming content
+    default: false
+  fishing.admin:
+    description: Access to Fishing admin commands
+    default: op
+  premiumfishing:
+    description: Access to Tier 3-7 Fishing content
+    default: false
+  cooking.admin:
+    description: Access to Cooking admin commands
+    default: op
+  premiumcooking:
+    description: Access to Tier 3-7 Cooking content
+    default: false
+  hunter.admin:
+    description: Access to Hunter admin commands
+    default: op
+  premiumhunter:
+    description: Access to Tier 3-7 Hunter content
+    default: false

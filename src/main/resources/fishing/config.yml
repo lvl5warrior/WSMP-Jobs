@@ -1,0 +1,270 @@
+# WSMP-Fishing configuration
+# Points are an in-plugin currency earned from tasks and The Big Catch
+# Legendary Request — NOT real money, NOT shared with any other plugin.
+# Every number in this file is a placeholder ratio; rebalance to taste.
+#
+# Fishing has no natural "tier" gating in vanilla Minecraft (loot is random
+# regardless of player level) — tiers here gate which TASK you're offered,
+# the same way mining/woodcutting/farming tiers gate task assignment rather
+# than what you're physically capable of doing. What you can actually catch
+# in the world is unaffected by your Angler level.
+#
+# TIER PLACEMENT IS BASED ON REAL VANILLA CATCH ODDS (Java Edition), not
+# vibes. Vanilla fishing rolls 85% fish / 10% junk / 5% treasure per catch;
+# within each category the sub-weights work out to these overall per-catch
+# percentages (verified against the Minecraft Wiki fishing loot tables):
+#   Cod 51% | Salmon 21.25% | Pufferfish 11.05% | Lily Pad 1.7% | Tropical
+#   Fish 1.7% | Bone/Bowl/Leather/Leather Boots/Rotten Flesh/Potion/Tripwire
+#   Hook ~1.0% each | Bow/Enchanted Book/Fishing Rod/Name Tag/Nautilus
+#   Shell/Saddle (treasure) ~0.83% each | Stick/String 0.5% each | Fishing
+#   Rod (plain, junk) 0.2% | Ink Sac 0.1% (the single rarest vanilla catch).
+# Every one of these is now tracked somewhere in the tier list below — Lily
+# Pad was previously missing entirely, and Leather Boots/Bowl were wrongly
+# sitting at Tier 6 despite being about as common as any other junk item;
+# both are fixed here to match their real rarity band.
+# Task sizes are 1-5 across the board (down from up to 40) since reeling in
+# a specific item one bite at a time takes far longer than breaking a block.
+
+settings:
+  skip-cost: 150.0
+  task-block-cost: 200.0
+  master-teleport-cost: 6600.0
+  master-teleport-cooldown-minutes: 30
+  guide-book-cooldown-hours: 24
+  npc-shop-radius: 5.0
+
+tiers:
+  1:
+    name: "Tier 1"
+    display: "&aTier 1"
+    difficulty: "Very Easy"
+    min-level: 1
+    base-coins: 10
+    premium: false
+    resources:
+      COD: {type: FISHING, level: 1, min-amount: 3, max-amount: 5}
+      SALMON: {type: FISHING, level: 1, min-amount: 3, max-amount: 5}
+  2:
+    name: "Tier 2"
+    display: "&aTier 2"
+    difficulty: "Easy"
+    min-level: 10
+    base-coins: 20
+    premium: false
+    resources:
+      PUFFERFISH: {type: FISHING, level: 10, min-amount: 2, max-amount: 5}
+      LILY_PAD: {type: FISHING, level: 10, min-amount: 2, max-amount: 5}
+      TROPICAL_FISH: {type: FISHING, level: 12, min-amount: 2, max-amount: 5}
+  3:
+    name: "Tier 3"
+    display: "&eTier 3"
+    difficulty: "Moderate"
+    min-level: 25
+    base-coins: 40
+    premium: true
+    resources:
+      BONE: {type: FISHING, level: 25, min-amount: 2, max-amount: 4}
+      BOWL: {type: FISHING, level: 25, min-amount: 2, max-amount: 4}
+      LEATHER: {type: FISHING, level: 27, min-amount: 2, max-amount: 4}
+      LEATHER_BOOTS: {type: FISHING, level: 27, min-amount: 2, max-amount: 4}
+  4:
+    name: "Tier 4"
+    display: "&6Tier 4"
+    difficulty: "Hard"
+    min-level: 40
+    base-coins: 70
+    premium: true
+    resources:
+      ROTTEN_FLESH: {type: FISHING, level: 40, min-amount: 2, max-amount: 4}
+      POTION: {type: FISHING, level: 40, min-amount: 1, max-amount: 3}
+      TRIPWIRE_HOOK: {type: FISHING, level: 42, min-amount: 2, max-amount: 4}
+  5:
+    name: "Tier 5"
+    display: "&cTier 5"
+    difficulty: "Very Hard"
+    min-level: 55
+    base-coins: 120
+    premium: true
+    resources:
+      BOW: {type: FISHING, level: 55, min-amount: 1, max-amount: 3}
+      ENCHANTED_BOOK: {type: FISHING, level: 55, min-amount: 1, max-amount: 3}
+      NAME_TAG: {type: FISHING, level: 58, min-amount: 1, max-amount: 3}
+      SADDLE: {type: FISHING, level: 58, min-amount: 1, max-amount: 3}
+  6:
+    name: "Tier 6"
+    display: "&5Tier 6"
+    difficulty: "Elite"
+    min-level: 70
+    base-coins: 200
+    premium: true
+    resources:
+      NAUTILUS_SHELL: {type: FISHING, level: 70, min-amount: 1, max-amount: 3}
+      FISHING_ROD: {type: FISHING, level: 70, min-amount: 1, max-amount: 2}
+      STICK: {type: FISHING, level: 72, min-amount: 1, max-amount: 3}
+      STRING: {type: FISHING, level: 72, min-amount: 1, max-amount: 3}
+      INK_SAC: {type: FISHING, level: 75, min-amount: 1, max-amount: 2}
+  7:
+    name: "Tier 7"
+    display: "&6&lTier 7"
+    difficulty: "Legendary"
+    min-level: 85
+    base-coins: 600
+    premium: true
+    resources: {}
+    # Tier 7 doesn't use a normal task pool — see legendary-requests below.
+
+lucky-strike:
+  1: 0.01
+  2: 0.02
+  3: 0.03
+  4: 0.04
+  5: 0.05
+  6: 0.06
+  7: 0.08
+
+# Only one Legendary Request in this split — the Triad Trial (which spanned
+# mining/woodcutting/farming) never applied to Fishing in the first place.
+# The Big Catch reuses Nautilus Shell from the Tier 5 pool.
+legendary-requests:
+  the_big_catch:
+    display: "&b🐉 The Big Catch"
+    material: NAUTILUS_SHELL
+    min-amount: 4
+    max-amount: 8
+    yield: 600
+    cooldown-hours: 12
+
+streak-bonus:
+  5: 0.15
+  10: 0.25
+  25: 0.40
+  50: 0.65
+  100: 0.90
+
+shop:
+  task_skip:
+    display: "&fTask Skip"
+    material: ARROW
+    cost: 150
+    limit: -1
+    premium: false
+    description: "Skip your current task"
+  strength_potion:
+    display: "&fStrength Potion"
+    material: POTION
+    cost: 30
+    limit: -1
+    premium: false
+    description: "Strength potion"
+  speed_potion:
+    display: "&fSpeed Potion"
+    material: POTION
+    cost: 30
+    limit: -1
+    premium: false
+    description: "Speed potion"
+  saturation_potion:
+    display: "&fSaturation Potion"
+    material: POTION
+    cost: 45
+    limit: -1
+    premium: false
+    description: "Saturation potion"
+  night_vision:
+    display: "&fNight Vision"
+    material: POTION
+    cost: 60
+    limit: -1
+    premium: false
+    description: "Night Vision potion"
+  water_breathing:
+    display: "&fWater Breathing Potion"
+    material: POTION
+    cost: 60
+    limit: -1
+    premium: false
+    description: "Water Breathing potion"
+  luck_ii_book:
+    display: "&fLuck of the Sea II Book"
+    material: ENCHANTED_BOOK
+    cost: 450
+    limit: -1
+    premium: false
+    description: "Luck of the Sea II enchanted book"
+  lure_ii_book:
+    display: "&fLure II Book"
+    material: ENCHANTED_BOOK
+    cost: 450
+    limit: -1
+    premium: false
+    description: "Lure II enchanted book"
+  unbreaking_iii:
+    display: "&fUnbreaking III Book"
+    material: ENCHANTED_BOOK
+    cost: 450
+    limit: -1
+    premium: false
+    description: "Unbreaking III enchanted book"
+  luck_iii_book:
+    display: "&fLuck of the Sea III Book"
+    material: ENCHANTED_BOOK
+    cost: 600
+    limit: -1
+    premium: false
+    description: "Luck of the Sea III enchanted book"
+  mending:
+    display: "&fMending Book"
+    material: ENCHANTED_BOOK
+    cost: 1200
+    limit: -1
+    premium: false
+    description: "Mending enchanted book"
+  xp_boost:
+    display: "&bXP Boost"
+    material: EXPERIENCE_BOTTLE
+    cost: 2400
+    limit: -1
+    premium: true
+    description: "+10% Angler XP for 1 hour"
+  point_boost:
+    display: "&bPoint Boost"
+    material: EMERALD
+    cost: 3600
+    limit: -1
+    premium: true
+    description: "+10% Angler Points for 1 hour"
+  fishing_buff:
+    display: "&bFishing Buff"
+    material: PRISMARINE_CRYSTALS
+    cost: 150
+    limit: -1
+    premium: true
+    description: "+10% Rare-Catch chance for 1 hour"
+  better_tasks:
+    display: "&6Better Tasks"
+    material: NETHER_STAR
+    cost: 4800
+    limit: -1
+    premium: true
+    description: "+5% chance of a higher-tier task"
+  master_rod:
+    display: "&dMaster Angler Rod"
+    material: FISHING_ROD
+    cost: 6000
+    limit: -1
+    premium: true
+    description: "Enchanted Fishing Rod - the Tier 7 tool requirement"
+  master_teleport:
+    display: "&dTeleport to Master"
+    material: ENDER_PEARL
+    cost: 6600
+    limit: 1
+    premium: true
+    description: "Unlock Angler teleport"
+  end_game_reward:
+    display: "&6&l???"
+    material: NETHER_STAR
+    cost: 20000
+    limit: -1
+    premium: true
+    description: "End-game reward"
