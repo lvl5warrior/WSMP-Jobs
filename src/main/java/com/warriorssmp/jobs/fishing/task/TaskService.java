@@ -184,8 +184,8 @@ public final class TaskService {
         String xpBar = "§b" + "█".repeat(filled) + "§7" + "░".repeat(barLength - filled);
 
         String xpPart = level >= XpTable.MAX_LEVEL
-                ? "§bFishing +" + xpGained + " XP §7(MAX LEVEL)"
-                : "§bFishing +" + xpGained + " XP §7(" + xpRemaining + " to next level) " + xpBar;
+                ? "§bFishing +" + xpGained + " XP §7(MAX LEVEL) 🎣"
+                : "§bFishing +" + xpGained + " XP §7(" + xpRemaining + " to next level) " + xpBar + " 🎣";
 
         if (taskForDisplay != null) {
             int taskBarLength = 15;

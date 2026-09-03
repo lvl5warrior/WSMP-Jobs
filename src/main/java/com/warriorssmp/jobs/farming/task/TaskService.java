@@ -171,8 +171,8 @@ public final class TaskService {
         String xpBar = "§b" + "█".repeat(filled) + "§7" + "░".repeat(barLength - filled);
 
         String xpPart = level >= XpTable.MAX_LEVEL
-                ? "§bFarming +" + xpGained + " XP §7(MAX LEVEL)"
-                : "§bFarming +" + xpGained + " XP §7(" + xpRemaining + " to next level) " + xpBar;
+                ? "§bFarming +" + xpGained + " XP §7(MAX LEVEL) 🌾"
+                : "§bFarming +" + xpGained + " XP §7(" + xpRemaining + " to next level) " + xpBar + " 🌾";
 
         if (taskForDisplay != null) {
             int taskBarLength = 15;
